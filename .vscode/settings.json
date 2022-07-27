@@ -1,0 +1,15 @@
+{
+    "intelephense.telemetry.enabled": false,
+    "php.suggest.basic": false,
+    "intelephense.compatibility.correctForArrayAccessArrayAndTraversableArrayUnionTypes": false,
+    "intelephense.environment.phpVersion": "8.1.8",
+    "intelephense.phpdoc.functionTemplate": {
+    
+        "summary": "$1",
+        "tags": [
+            "@param ${1:$SYMBOL_TYPE} $SYMBOL_NAME $2",
+            "@return ${1:$SYMBOL_TYPE} $2",
+            "@throws ${1:$SYMBOL_TYPE} $2"
+        ]
+    }
+}
