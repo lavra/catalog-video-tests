@@ -3,8 +3,9 @@
 namespace Tests\Unit\Domain\Entity;
 
 use Throwable;
-use Core\Domain\Entity\Category;
+use Ramsey\Uuid\Uuid;
 use PHPUnit\Framework\TestCase;
+use Core\Domain\Entity\Category;
 use PhpParser\Node\Stmt\TryCatch;
 use Core\Domain\Exception\EntityValidationException;
 
@@ -19,6 +20,7 @@ class CategoryUnitTest extends TestCase
             isActive: true
         );
 
+        $this->assertNotEmpty($category->id());
         $this->assertEquals('New Cat', $category->name);
         $this->assertEquals('New Desc', $category->description);
         $this->assertEquals(true, $category->isActive);
@@ -51,7 +53,7 @@ class CategoryUnitTest extends TestCase
 
     public function testUpdate()
     {
-        $uuid = 'uuid.value';
+        $uuid = (string) Uuid::uuid4()->toString();
 
         $category = new Category(
             id: $uuid,
@@ -66,6 +68,7 @@ class CategoryUnitTest extends TestCase
             description: 'new_desc',
         );
 
+        $this->assertEquals($uuid, $category->id);
         $this->assertEquals('new_name', $category->name);
         $this->assertEquals('new_desc', $category->description);
     }
