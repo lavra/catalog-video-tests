@@ -8,7 +8,8 @@ class DomainValidation
 {
     public static function notNull(string $value, string $exceptMessage = null) 
     {
-        if (empty($value))
+        if (empty($value)) {
             throw new EntityValidationException($exceptMessage ?? "Não deve ser nulo");
+        }
     }   
 }
