@@ -13,8 +13,6 @@ trait MethodsMagicsTrait
 
         $className = get_class($this);
 
-        print_r($className);
-
         throw new Exception("Property {$property} not found in {$className}");
     }
 

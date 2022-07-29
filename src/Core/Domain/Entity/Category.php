@@ -65,6 +65,5 @@ class Category
         if ($this->description != '' && (strlen($this->description) > 255 || strlen($this->description) < 3)) {
             throw new EntityValidationException("A descrição tem que ser maior que 3 e menor que 250 caracteries");
         }
-
     }
 }
