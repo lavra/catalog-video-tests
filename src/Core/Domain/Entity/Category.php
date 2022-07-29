@@ -57,7 +57,6 @@ class Category
             throw new EntityValidationException("Nome inválido");
         }
 
-
         if (strlen($this->name) > 255 || strlen($this->name) <= 2) {
             throw new EntityValidationException("O nome tem que ser maior que 2 e menor que 50 caracteries");
         }

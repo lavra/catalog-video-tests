@@ -74,7 +74,7 @@ class CategoryUnitTest extends TestCase
     {
         try {
             $category = new Category(
-                name: 'N', 
+                name: 'Ne', 
                 description: 'New Desc'
             );
 
