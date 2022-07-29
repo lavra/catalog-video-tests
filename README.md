@@ -117,5 +117,9 @@ tests
                 -> DomainValidation.php
 
 ````
-
+### Instalar oramsey/uuid
+- Instalar via Composer 
+````
+# composer require ramsey/uuid
+````
 
