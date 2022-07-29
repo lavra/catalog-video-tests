@@ -38,7 +38,7 @@ class DomainValidationUnitTest extends TestCase
         }
     }
 
-    public function testStringMaxLength()
+    public function testStrMaxLength()
     {
         try {
             $value = 'Test';
@@ -52,7 +52,7 @@ class DomainValidationUnitTest extends TestCase
         }
     }
 
-    public function testStringMinLength()
+    public function testStrMinLength()
     {
         try {
             $value = 'Test';
@@ -63,6 +63,20 @@ class DomainValidationUnitTest extends TestCase
         } catch (Throwable $th) {
 
             $this->assertInstanceOf(EntityValidationException::class, $th, 'Exception: string min 8 length');
+        }
+    }
+
+    public function testStrCanNullAndMaxLength()
+    {
+        try {
+            $value = 'Test';
+            DomainValidation::strCanNullAndMaxLength($value, 3, 'Exception: string max 8 length or null');
+
+            $this->assertTrue(false);
+
+        } catch (Throwable $th) {
+
+            $this->assertInstanceOf(EntityValidationException::class, $th, 'Exception: string max 8 length or null');
         }
     }
 }
