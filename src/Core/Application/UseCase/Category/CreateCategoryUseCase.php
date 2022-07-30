@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\UseCase\Category;
+namespace Core\Application\UseCase\Category;
 
 use Core\Domain\Entity\Category;
 use Core\Domain\Repository\CategoryRepositoryInterface;
