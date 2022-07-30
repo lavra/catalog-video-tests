@@ -11,7 +11,7 @@ use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Application\UseCase\Category\CreateCategoryUseCase;
 
 
-class CreateCategoryUseCaseUnitTest extends TestCase
+class CategoryCreateUseCaseUnitTest extends TestCase
 {
     public function testCreateNewCategory()
     {
