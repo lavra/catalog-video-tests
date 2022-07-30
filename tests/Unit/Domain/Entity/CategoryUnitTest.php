@@ -17,20 +17,22 @@ class CategoryUnitTest extends TestCase
         $category = new Category(
             name: 'New Cat',
             description: 'New Desc',
-            isActive: true
+            isActive: true 
         );
 
         $this->assertNotEmpty($category->id());
         $this->assertEquals('New Cat', $category->name);
         $this->assertEquals('New Desc', $category->description);
         $this->assertEquals(true, $category->isActive);
+        $this->assertNotEmpty($category->createdAt());
+
     }
 
     public function testActivated()
     {
         $category = new Category(
             name: 'New Cat', 
-            isActive: false, 
+            isActive: false           
         );
 
         $this->assertFalse($category->isActive);
@@ -41,7 +43,7 @@ class CategoryUnitTest extends TestCase
     public function testDisabled()
     {
         $category = new Category(
-            name: 'New Cat', 
+            name: 'New Cat'
         );
 
         $this->assertTrue($category->isActive);
@@ -59,8 +61,8 @@ class CategoryUnitTest extends TestCase
             id: $uuid,
             name: 'New Cat', 
             description: 'New Desc',
-            isActive: true
-
+            isActive: true,
+            createdAt: '2023-01-01 00:00:00'
         );
 
         $category->update(
