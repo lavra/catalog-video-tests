@@ -14,6 +14,6 @@ class CategoryCreateInputDto
     public function __construct(
         public string $name,
         public string $description = '',
-        public bool $is_active = true,
+        public bool $isActive = true,
     ) { }
 }
