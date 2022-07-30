@@ -46,6 +46,18 @@ class CategoryCreateUseCaseUnitTest extends TestCase
         $this->assertEquals($categoryName, $response->name);
         $this->assertEquals('', $response->description);
 
+        /**
+         * Spies
+         * Verifica se chamou o método
+         * 
+         */
+        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);      
+        $this->spy->shouldReceive('insert')->andReturn($this->mockEntity);
+
+        $useCase =  new CategoryCreateUseCase($this->spy);
+        $response = $useCase->execute($this->mockInputDto);
+        $this->spy->shouldHaveReceived('insert');
+
         Mockery::close();
     }
 }
