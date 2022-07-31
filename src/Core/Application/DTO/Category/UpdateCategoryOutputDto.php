@@ -2,7 +2,7 @@
 
 namespace Core\Application\DTO\Category;
 
-class CreateCategoryOutputDto
+class UpdateCategoryOutputDto
 {
     public function __construct(
         public string $id,

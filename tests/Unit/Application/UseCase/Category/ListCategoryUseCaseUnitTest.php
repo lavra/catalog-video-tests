@@ -6,7 +6,7 @@ use Mockery;
 use stdClass;
 use Ramsey\Uuid\Uuid;
 use PHPUnit\Framework\TestCase;
-use Core\Domain\Entity\Category;
+use Core\Domain\Entity\Category as EntityCategory;
 use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Application\UseCase\Category\ListCategoryUseCase;
 use Core\Application\DTO\Category\{
@@ -21,7 +21,7 @@ class ListCategoryUseCaseUnitTest extends TestCase
     {
         $id = (string) Uuid::uuid4()->toString();
 
-        $this->mockEntity = Mockery::mock(Category::class, [
+        $this->mockEntity = Mockery::mock(EntityCategory::class, [
             $id,
             'test category'
         ]);

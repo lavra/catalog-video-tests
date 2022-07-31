@@ -2,12 +2,12 @@
 
 namespace Core\Application\DTO\Category;
 
-class CreateCategoryOutputDto
+class UpdateCategoryInputDto
 {
     public function __construct(
         public string $id,
         public string $name,
-        public string $description = '',
+        public string|null $description = null,
         public bool $isActive = true,
     ) { }
 }

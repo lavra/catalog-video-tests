@@ -32,7 +32,7 @@ class CreateCategoryUseCase
             id: $new_category->id(),
             name: $new_category->name,
             description: $category->description,
-            is_active: $category->isActive,
+            isActive: $category->isActive,
         );
     }
 }
