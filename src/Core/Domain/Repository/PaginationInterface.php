@@ -7,8 +7,6 @@ use stdClass;
 interface PaginationInterface
 {
     /**
-     * Implementa stdClass no array.
-     *
      * @return stdClass[]
      */
     public function items(): array;

@@ -6,10 +6,11 @@ class ListCategoriesInputDto
 {
     /**
      * Construct function
-     *
-     * @param string $id
      */
     public function __construct(
-        //public string $id
+        public string $filter = '',
+        public string $order = 'DESC',
+        public int $page = 1,
+        public int $totalPage = 15
     ) { }
 }

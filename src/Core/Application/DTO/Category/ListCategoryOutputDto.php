@@ -7,6 +7,7 @@ class ListCategoryOutputDto
     /**
      * Construtor DTO Category
      *
+     * @param string $id
      * @param string $name
      * @param string $description
      * @param boolean $is_active
