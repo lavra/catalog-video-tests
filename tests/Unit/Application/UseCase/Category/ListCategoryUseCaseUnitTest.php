@@ -39,5 +39,28 @@ class ListCategoryUseCaseUnitTest extends TestCase
         $this->assertEquals($id, $response->id);
         $this->assertEquals('test category', $response->name);
 
+        /**
+         * Spies
+         * Verifica se chamou o método
+         * 
+         */
+        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);      
+        $this->spy->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);
+
+        $useCase =  new ListCategoryUseCase($this->spy);
+        $response = $useCase->execute($this->mockInputDto);
+        $this->spy->shouldHaveReceived('findById');
+    }
+
+    /**
+     * Chamado sempre que nossa class não está sendo utilizado.
+     *
+     * @return void
+     */
+    protected function tearDown(): void
+    {
+        Mockery::close();
+
+        parent::tearDown();
     }
 }
