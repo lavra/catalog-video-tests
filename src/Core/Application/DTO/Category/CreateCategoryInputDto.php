@@ -2,7 +2,7 @@
 
 namespace Core\Application\DTO\Category;
 
-class CategoryCreateInputDto
+class CreateCategoryInputDto
 {
     /**
      * Construtor DTO Category

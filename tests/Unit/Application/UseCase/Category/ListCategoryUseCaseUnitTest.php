@@ -7,14 +7,14 @@ use Ramsey\Uuid\Uuid;
 use PHPUnit\Framework\TestCase;
 use Core\Domain\Entity\Category;
 use Core\Domain\Repository\CategoryRepositoryInterface;
-use Core\Application\UseCase\Category\CategoryListUseCase;
+use Core\Application\UseCase\Category\ListCategoryUseCase;
 use Core\Application\DTO\Category\{
-    CategoryListInputDto,
-    CategoryListOutputDto
+    ListCategoryInputDto,
+    ListCategoryOutputDto
 };
 
 
-class CategoryListUseCaseUnitTest extends TestCase
+class ListCategoryUseCaseUnitTest extends TestCase
 {
     public function testGetById()
     {
@@ -30,12 +30,12 @@ class CategoryListUseCaseUnitTest extends TestCase
                             ->with($id)
                             ->andReturn($this->mockEntity);
                             
-        $this->mockInputDto = Mockery::mock(CategoryListInputDto::class, [$id]);
+        $this->mockInputDto = Mockery::mock(ListCategoryInputDto::class, [$id]);
 
-        $useCase =  new CategoryListUseCase($this->mockRepository);
+        $useCase =  new ListCategoryUseCase($this->mockRepository);
         $response = $useCase->execute($this->mockInputDto);
 
-        $this->assertInstanceOf(CategoryListOutputDto::class, $response);
+        $this->assertInstanceOf(ListCategoryOutputDto::class, $response);
         $this->assertEquals($id, $response->id);
         $this->assertEquals('test category', $response->name);
 

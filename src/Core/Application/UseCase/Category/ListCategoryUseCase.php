@@ -5,11 +5,11 @@ namespace Core\Application\UseCase\Category;
 use Core\Domain\Entity\Category;
 use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Application\DTO\Category\{
-    CategoryListInputDto,
-    CategoryListOutputDto
+    ListCategoryInputDto,
+    ListCategoryOutputDto
 };
 
-class CategoryListUseCase
+class ListCategoryUseCase
 {
     protected $repository;
 
@@ -18,12 +18,12 @@ class CategoryListUseCase
         $this->repository = $repository;
     }
 
-    public function execute(CategoryListInputDto $input): CategoryListOutputDto
+    public function execute(ListCategoryInputDto $input): ListCategoryOutputDto
     {
 
         $category = $this->repository->findById($input->id);
 
-        return new CategoryListOutputDto(
+        return new ListCategoryOutputDto(
             id: $category->id,
             name: $category->name,
             description: $category->description,

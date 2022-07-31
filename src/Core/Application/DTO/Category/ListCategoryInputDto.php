@@ -2,7 +2,7 @@
 
 namespace Core\Application\DTO\Category;
 
-class CategoryListInputDto
+class ListCategoryInputDto
 {
     /**
      * Construct function

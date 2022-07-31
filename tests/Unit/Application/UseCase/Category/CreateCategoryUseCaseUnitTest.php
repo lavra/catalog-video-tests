@@ -9,13 +9,13 @@ use PHPUnit\Framework\TestCase;
 use Core\Domain\Entity\Category;
 use PhpParser\Builder\InterfaceTest;
 use Core\Domain\Repository\CategoryRepositoryInterface;
-use Core\Application\UseCase\Category\CategoryCreateUseCase;
+use Core\Application\UseCase\Category\CreateCategoryUseCase;
 use Core\Application\DTO\Category\{
-    CategoryCreateInputDto,
-    CategoryCreateOutputDto
+    CreateCategoryInputDto,
+    CreateCategoryOutputDto
 };
 
-class CategoryCreateUseCaseUnitTest extends TestCase
+class CreateCategoryUseCaseUnitTest extends TestCase
 {
 
     public function testCreateNewCategory()
@@ -35,15 +35,15 @@ class CategoryCreateUseCaseUnitTest extends TestCase
         $this->mockRepository = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);      
         $this->mockRepository->shouldReceive('insert')->andReturn($this->mockEntity);
 
-        $this->mockInputDto = Mockery::mock(CategoryCreateInputDto::class, [
+        $this->mockInputDto = Mockery::mock(CreateCategoryInputDto::class, [
             $categoryName,
         ]);
 
         
-        $useCase =  new CategoryCreateUseCase($this->mockRepository);
+        $useCase =  new CreateCategoryUseCase($this->mockRepository);
         $response = $useCase->execute($this->mockInputDto);
 
-        $this->assertInstanceOf(CategoryCreateOutputDto::class, $response);
+        $this->assertInstanceOf(CreateCategoryOutputDto::class, $response);
         $this->assertEquals($categoryName, $response->name);
         $this->assertEquals('', $response->description);
 
@@ -55,7 +55,7 @@ class CategoryCreateUseCaseUnitTest extends TestCase
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);      
         $this->spy->shouldReceive('insert')->andReturn($this->mockEntity);
 
-        $useCase =  new CategoryCreateUseCase($this->spy);
+        $useCase =  new CreateCategoryUseCase($this->spy);
         $response = $useCase->execute($this->mockInputDto);
         $this->spy->shouldHaveReceived('insert');
 
