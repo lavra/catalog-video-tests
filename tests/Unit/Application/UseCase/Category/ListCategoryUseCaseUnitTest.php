@@ -52,7 +52,7 @@ class ListCategoryUseCaseUnitTest extends TestCase
      * @param $mockInputDto
      * @return void
      */
-    protected function spies($id, $mockEntity, $mockInputDto): void
+    protected function spies($id, $mockEntity, $mockInputDto)
     {
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);      
         $this->spy->shouldReceive('findById')->with($id)->andReturn($mockEntity);
