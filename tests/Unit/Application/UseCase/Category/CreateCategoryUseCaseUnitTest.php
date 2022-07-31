@@ -38,7 +38,6 @@ class CreateCategoryUseCaseUnitTest extends TestCase
         $this->mockInputDto = Mockery::mock(CreateCategoryInputDto::class, [
             $categoryName,
         ]);
-
         
         $useCase =  new CreateCategoryUseCase($this->mockRepository);
         $response = $useCase->execute($this->mockInputDto);
@@ -47,18 +46,37 @@ class CreateCategoryUseCaseUnitTest extends TestCase
         $this->assertEquals($categoryName, $response->name);
         $this->assertEquals('', $response->description);
 
-        /**
-         * Spies
-         * Verifica se chamou o método
-         * 
-         */
+        $this->spies($this->mockEntity, $this->mockInputDto);
+    }
+
+    /**
+     * Spies function
+     * Verifica se chamou o método
+     *
+     * @param $mockEntity
+     * @param $mockInputDto
+     * @return void
+     */
+    protected function spies($mockEntity, $mockInputDto)
+    {
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);      
-        $this->spy->shouldReceive('insert')->andReturn($this->mockEntity);
+        $this->spy->shouldReceive('insert')->andReturn($mockEntity);
 
         $useCase =  new CreateCategoryUseCase($this->spy);
-        $response = $useCase->execute($this->mockInputDto);
+        $response = $useCase->execute($mockInputDto);
         $this->spy->shouldHaveReceived('insert');
+    }
 
+    /**
+     * Chamado sempre que nossa class não está sendo utilizado.
+     * importante: Implementar quando tiver mais de um teste na class.
+     *
+     * @return void     * 
+     */
+    protected function tearDown(): void
+    {
         Mockery::close();
+
+        parent::tearDown();
     }
 }

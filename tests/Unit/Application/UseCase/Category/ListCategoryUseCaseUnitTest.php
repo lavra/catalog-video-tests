@@ -39,22 +39,32 @@ class ListCategoryUseCaseUnitTest extends TestCase
         $this->assertInstanceOf(ListCategoryOutputDto::class, $response);
         $this->assertEquals($id, $response->id);
         $this->assertEquals('test category', $response->name);
+        
+        $this->spies($id, $this->mockEntity, $this->mockInputDto);
+    }
 
-        /**
-         * Spies
-         * Verifica se chamou o método
-         * 
-         */
+    /**
+     * Spies function
+     * Verifica se chamou o método
+     *
+     * @param $id
+     * @param $mockEntity
+     * @param $mockInputDto
+     * @return void
+     */
+    protected function spies($id, $mockEntity, $mockInputDto): void
+    {
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);      
-        $this->spy->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);
+        $this->spy->shouldReceive('findById')->with($id)->andReturn($mockEntity);
 
         $useCase =  new ListCategoryUseCase($this->spy);
-        $response = $useCase->execute($this->mockInputDto);
+        $response = $useCase->execute($mockInputDto);
         $this->spy->shouldHaveReceived('findById');
     }
 
     /**
      * Chamado sempre que nossa class não está sendo utilizado.
+     * importante: Implementar quando tiver mais de um teste na class.
      *
      * @return void
      */

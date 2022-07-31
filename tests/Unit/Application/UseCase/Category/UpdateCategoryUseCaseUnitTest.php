@@ -14,6 +14,7 @@ use Core\Application\DTO\Category\{
     UpdateCategoryInputDto,
     UpdateCategoryOutputDto
 };
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class UpdateCategoryUseCaseUnitTest extends TestCase
 {
@@ -43,20 +44,41 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
 
         $this->assertInstanceOf(UpdateCategoryOutputDto::class, $response);
 
-        /**
-         * Spies
-         */
+        $this->spies($this->mockEntity, $this->mockInputDto);
+
+    }
+    
+    /**
+     * Spies function
+     * Verifica se chamou os métodos
+     *
+     * @param $mockEntity
+     * @param $mockInputDto
+     * @return void
+     */
+    protected function spies($mockEntity, $mockInputDto)
+    {
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
-        $this->spy->shouldReceive('findById')->andReturn($this->mockEntity);
-        $this->spy->shouldReceive('update')->andReturn($this->mockEntity);
+        $this->spy->shouldReceive('findById')->andReturn($mockEntity);
+        $this->spy->shouldReceive('update')->andReturn($mockEntity);
 
         $useCase = new UpdateCategoryUseCase($this->spy);
-        $useCase->execute($this->mockInputDto);
+        $useCase->execute($mockInputDto);
 
         $this->spy->shouldHaveReceived('findById');
         $this->spy->shouldHaveReceived('update');
+    }
 
-
+    /**
+     * Chamado sempre que nossa class não está sendo utilizado.
+     * importante: Implementar quando tiver mais de um teste na class.
+     *
+     * @return void
+     */
+    protected function tearDown(): void
+    {
         Mockery::close();
+
+        parent::tearDown();
     }
 }

@@ -28,9 +28,8 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $response = $useCase->execute($this->mockInputDto);
 
         $this->assertCount(0, $response->items);
-        $this->assertInstanceOf(ListCategoriesOutputDto::class, $response);    
-        
-        // Spies
+        $this->assertInstanceOf(ListCategoriesOutputDto::class, $response);   
+      
         $this->spiesPagination($mockPagination, $this->mockInputDto);     
     } 
 
@@ -73,15 +72,21 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         return $register;
     }
 
-    protected function spiesPagination($mockPagination, $mockInputDto)
+    /**
+     * Spies function
+     * Verifica se chamou o método
+     *
+     * @param $mockPagination
+     * @param $mockInputDto
+     * @return void
+     */
+    protected function spiesPagination($mockPagination, $mockInputDto):void
     {
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
         $this->spy->shouldReceive('paginate')->andReturn($mockPagination);
         $useCase =  new ListCategoriesUseCase($this->spy);        
         $useCase->execute($mockInputDto);
         $this->spy->shouldHaveReceived('paginate');
-
-        return $this->spy;
     }
 
     
@@ -102,7 +107,7 @@ class ListCategoriesUseCaseUnitTest extends TestCase
 
     /**
      * Chamado sempre que nossa class não está sendo utilizado.
-     * importante: Implementar quando tiver outros métodos.
+     * importante: Implementar quando tiver mais de um teste na class.
      *
      * @return void
      */
