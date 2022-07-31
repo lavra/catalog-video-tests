@@ -2,6 +2,8 @@
 
 namespace Core\Domain\Repository;
 
+use stdClass;
+
 interface PaginationInterface
 {
     /**

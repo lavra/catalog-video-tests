@@ -3,6 +3,7 @@
 namespace Tests\Unit\Application\UseCase\Category;
 
 use Mockery;
+use stdClass;
 use Ramsey\Uuid\Uuid;
 use PHPUnit\Framework\TestCase;
 use Core\Domain\Entity\Category;
