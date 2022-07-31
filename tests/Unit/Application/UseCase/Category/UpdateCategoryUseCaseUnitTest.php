@@ -42,5 +42,21 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
         $response = $useCase->execute($this->mockInputDto);
 
         $this->assertInstanceOf(UpdateCategoryOutputDto::class, $response);
+
+        /**
+         * Spies
+         */
+        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
+        $this->spy->shouldReceive('findById')->andReturn($this->mockEntity);
+        $this->spy->shouldReceive('update')->andReturn($this->mockEntity);
+
+        $useCase = new UpdateCategoryUseCase($this->spy);
+        $useCase->execute($this->mockInputDto);
+
+        $this->spy->shouldHaveReceived('findById');
+        $this->spy->shouldHaveReceived('update');
+
+
+        Mockery::close();
     }
 }
