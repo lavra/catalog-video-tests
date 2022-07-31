@@ -26,15 +26,14 @@ class UpdateCategoryUseCase
             description: $input->description ?? $category->description,
         );
 
-        $updated = $this->repository->update($category);
+        $update = $this->repository->update($category);
 
         return new UpdateCategoryOutputDto(
-            id: $updated->id,
-            name: $updated->name,
-            description: $updated->description,
-            isActive: $updated->isActive,
+            id: $update->id,
+            name: $update->name,
+            description: $update->description,
+            isActive: $update->isActive,
+            created_at: $update->createdAt(),
         );
-
-
     }
 }

@@ -33,6 +33,7 @@ class CreateCategoryUseCase
             name: $new_category->name,
             description: $category->description,
             isActive: $category->isActive,
+            created_at: $new_category->createdAt(),
         );
     }
 }
