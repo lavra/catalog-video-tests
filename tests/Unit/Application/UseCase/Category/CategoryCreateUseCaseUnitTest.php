@@ -9,16 +9,17 @@ use PHPUnit\Framework\TestCase;
 use Core\Domain\Entity\Category;
 use PhpParser\Builder\InterfaceTest;
 use Core\Domain\Repository\CategoryRepositoryInterface;
-use Core\Application\DTO\Category\CategoryCreateInputDto;
-use Core\Application\DTO\Category\CategoryCreateOutputDto;
 use Core\Application\UseCase\Category\CategoryCreateUseCase;
+use Core\Application\DTO\Category\{
+    CategoryCreateInputDto,
+    CategoryCreateOutputDto
+};
 
 class CategoryCreateUseCaseUnitTest extends TestCase
 {
 
     public function testCreateNewCategory()
     {
-
         $uuid = (string) Uuid::uuid4()->toString();
         $categoryName = 'Name';
         $categoryDescription = 'Description';
