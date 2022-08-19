@@ -50,8 +50,7 @@ class UpdateCategoryUseCaseUnitTest extends TestCase
     }
     
     /**
-     * Spies function
-     * Verifica se chamou os métodos
+     * Validar se os métodos do repositório realmente foram chamados pelo UseCase.
      *
      * @param $mockEntity
      * @param $mockInputDto

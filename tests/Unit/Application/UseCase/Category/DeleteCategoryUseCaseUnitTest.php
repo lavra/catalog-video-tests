@@ -55,8 +55,7 @@ class DeleteCategoryUseCaseUnitTest extends TestCase
     }
 
     /**
-     * Spies function
-     * Verifica se chamou o método
+     * Validar se os métodos do repositório realmente foram chamados pelo UseCase.
      *
      * @param $mockInputDto
      * @return void
